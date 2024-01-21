@@ -5,8 +5,8 @@ defineProps<{
 </script>
 
 <template>
-    <div class="empty w-100 d-flex items-center content-center">
-        <p class="col-black">
+    <div class="empty w-100 bg-slate-three d-flex items-center content-center">
+        <p class="col-white">
             {{ text }}
         </p>
     </div>

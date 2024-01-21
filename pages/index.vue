@@ -6,5 +6,5 @@ definePageMeta({
 </script>
 
 <template>
-    <h1>Homepage</h1>
+    <h1 class="col-white">Homepage</h1>
 </template>

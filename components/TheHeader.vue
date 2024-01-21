@@ -1,52 +1,40 @@
-<script lang="ts" setup>
-defineEmits(["openSidebar"]);
-</script>
-
 <template>
     <header class="header w-100 d-flex items-center content-between">
-        <div class="d-flex items-center" style="gap: 1rem">
-            <button class="close d-none" @click="$emit('openSidebar')">
-                <IconLoader name="hamburger" />
-            </button>
-            <h3 class="header__title text-capitalize">
-                <NuxtLink v-if="$route.name === 'product'" to="/products">
-                    Back to products
-                </NuxtLink>
-                <template v-else>
-                    {{ $route.path.replace("/", "") }}
-                </template>
-            </h3>
-        </div>
+        <NuxtLink class="header__logo col-white weight-bold" to="/">
+            COMPANY
+        </NuxtLink>
+
+        <NuxtLink class="header__nav col-white weight-medium" to="/products">
+            Products
+        </NuxtLink>
 
         <div class="header__ctas d-flex items-center">
-            <button><IconLoader name="message" /></button>
-            <button><IconLoader name="notification" /></button>
+            <button class="col-white"><IconLoader name="message" /></button>
+            <button class="col-white"><IconLoader name="notification" /></button>
         </div>
     </header>
 </template>
 
 <style lang="scss" scoped>
 .header {
-    .close {
+    height: 7rem;
+    padding: 3rem;
+    border-bottom: 1px solid var(--slate-two);
+
+    &__logo {
+        @include font(2.4rem, 100%);
+
         @include respond-to("medium") {
-            display: block
+            @include font(2rem, 100%);
         }
     }
 
-    &__title {
-        @include font(2.4rem, 100%);
+    &__nav {
+        @include font(2rem, 100%);
     }
 
     &__ctas {
         @include gap(2rem);
-
-        button {
-            transition: color 0.5s ease-in;
-
-            &:hover {
-                color: var(--blue);
-            }
-        }
     }
 }
 </style>

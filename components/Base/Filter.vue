@@ -22,23 +22,23 @@ function selectFilter(filter: string) {
 
 <template>
     <div class="filter d-flex items-center">
-        <template v-if="selectedFilters.length > 0">
-            <button v-for="selectedFilter in selectedFilters.slice(0, 3)" :key="selectedFilter" class="filter__selected bg-white col-black d-flex items-center" @click="selectFilter(selectedFilter)">
+        <div v-if="selectedFilters.length > 0" class="selected-filters">
+            <button v-for="selectedFilter in selectedFilters.slice(0, 3)" :key="selectedFilter" class="filter__selected bg-blue col-white d-flex items-center" @click="selectFilter(selectedFilter)">
                 {{ selectedFilter }} <IconLoader name="close" />
             </button>
-            <button v-if="selectedFilters.length > 3" class="filter__selected bg-white col-black d-flex items-center" @click="showFilters = !showFilters">
+            <button v-if="selectedFilters.length > 3" class="filter__selected bg-blue col-white d-flex items-center" @click="showFilters = !showFilters">
                 <IconLoader name="more" />
             </button>
-        </template>
+        </div>
 
         <div class="position-relative">
-            <button class="filter__cta d-flex items-center bg-white col-black" @click="showFilters = !showFilters">
+            <button class="filter__cta d-flex items-center content-center bg-blue col-white" @click="showFilters = !showFilters">
                 <IconLoader name="filter" /> Filters
             </button>
 
             <Transition name="fade" mode="out-in" appear>
                 <div v-show="showFilters" class="filter__options d-flex flex-column items-start bg-white position-absolute z-3">
-                    <label v-for="filter in filters" :key="filter.id" :for="filter.name" class="d-flex items-center cursor-pointer text-nowrap">
+                    <label v-for="filter in filters" :key="filter.id" :for="filter.name" class="w-100 d-flex items-center cursor-pointer text-nowrap col-slate-three">
                         <input :id="filter.name" type="checkbox" :name="filter.name" :checked="selectedFilters.includes(filter.name)" @change="selectFilter(filter.name)">
                         {{ filter.name }}
                     </label>
@@ -52,28 +52,33 @@ function selectFilter(filter: string) {
 .filter {
     @include gap(1.5rem);
 
+    .selected-filters {
+        @include respond-to("small") {
+            display: none;
+        }
+    }
+
     &__selected {
         @include gap(1.5rem);
         padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
     }
 
     &__cta {
         @extend .filter__selected;
+        width: 13rem;
     }
 
     .filter__options {
-        padding: 1.5rem;
-        border-radius: 0.5rem;
         top: 5rem;
         left: 0;
-        @include gap(2rem);
         width: auto;
         max-width: 30rem;
-        box-shadow: #959da533 0px 8px 24px;
+        box-shadow: 0 0.4rem 1.6rem 0 #00000059;
 
         label {
             @include gap(1.5rem);
+            padding: 1.5rem;
+            border-bottom: 0.1rem solid var(--grey);
         }
     }
 }

@@ -11,25 +11,26 @@ await getCategories();
 </script>
 
 <template>
-    <div class="products">
+    <div class="products w-100">
         <div class="products__header d-flex items-center content-between">
             <BaseFilter v-model="selectedCategories" :filters="categories" />
             <BaseInput id="search" v-model="search" class="search" placeholder="Search..." type="search" />
         </div>
 
         <div class="products__container bg-white">
-            <BaseTable v-if="filteredProducts && filteredProducts.length > 0" :header="['Name', 'Provider', 'Price', 'Category']" description="Products table">
+            <BaseTable v-if="filteredProducts && filteredProducts.length > 0" :header="['Name', 'Provider', 'Price', 'Category', 'Active']" description="Products table">
                 <tr v-for="product in filteredProducts" :key="product.id" class="cursor-pointer" @click="selectedProduct = product">
                     <td>{{ product.name }}</td>
                     <td>{{ product.provider.company_name }}</td>
                     <td>{{ formatAmount(product.price) }}</td>
                     <td>{{ product.productCategory.name }}</td>
+                    <td :class="product.active ? 'col-blue' : 'col-red'">{{ product.active ? "Active" : "Not active" }}</td>
                 </tr>
             </BaseTable>
             <EmptyState v-else text="No products available" />
         </div>
 
-        <BaseModal v-if="selectedProduct" :title="selectedProduct.name" @close-modal="selectedProduct = null">
+        <BaseModal v-if="selectedProduct" title="Product Details" @close-modal="selectedProduct = null">
             <ProductDetails :product="selectedProduct" />
         </BaseModal>
     </div>
@@ -48,7 +49,7 @@ await getCategories();
         }
 
         .search {
-            width: 30rem;
+            width: 40rem;
 
             @include respond-to("medium") {
                 width: 100%;
@@ -58,8 +59,6 @@ await getCategories();
 
     &__container {
         margin-top: 3rem;
-        padding: 3rem;
-        border-radius: 1rem;
     }
 }
 </style>

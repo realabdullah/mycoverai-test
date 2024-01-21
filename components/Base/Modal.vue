@@ -3,15 +3,17 @@ defineProps<{
     title: string;
 }>();
 
-defineEmits(["closeModal"]);
+defineEmits<(event: "closeModal") => void>();
 </script>
 
 <template>
     <Transition name="fade" mode="out-in" appear>
         <div class="modal bg-white position-fixed z-9 overflow-auto">
             <div class="modal__header bg-white position-sticky d-flex items-center content-between">
-                <h3 class="weight-medium">{{ title }}</h3>
-                <button class="close-modal bg-grey cursor-pointer" @click="$emit('closeModal')">
+                <h3 class="col-slate-one weight-medium">
+                    {{ title }}
+                </h3>
+                <button class="close-modal bg-transparent col-slate-one cursor-pointer" @click="$emit('closeModal')">
                     <IconLoader name="close" />
                 </button>
             </div>
@@ -28,13 +30,10 @@ defineEmits(["closeModal"]);
 
 <style lang="scss" scoped>
 .modal {
-    padding: 1.5rem;
-    padding-top: 0;
     border: 1.5px solid var(--grey);
-    border-radius: 0.5rem;
     width: 75rem;
     max-width: 85vw;
-    max-height: 60vh;
+    max-height: 70vh;
     margin: 0 auto;
     top: 50%;
     left: 50%;
@@ -49,22 +48,23 @@ defineEmits(["closeModal"]);
 
     &__header {
         top: 0;
-        padding: 1.5rem 0;
-        margin-bottom: 2rem;
+        padding: 3.2rem;
+        border-bottom: 0.15rem solid var(--grey);
 
         h3 {
-            @include font(2rem, 100%);
+            @include font(3.2rem, 100%);
         }
 
         .close-modal {
             width: 3rem;
             height: 3rem;
-            border: 1.5px solid #e2e2e8;
-            border-radius: 50%;
-            right: 0.5rem;
-            top: 0.5rem;
-            padding-top: 0.45rem;
+            border: 0.15rem solid var(--grey);
+            padding-top: 0.2rem;
         }
+    }
+
+    &__content {
+        padding: 3.2rem;
     }
 }
 
@@ -73,6 +73,6 @@ defineEmits(["closeModal"]);
     right: 0;
     left: 0;
     top: 0;
-    backdrop-filter: blur(0.5rem);
+    background-color: #646467a2;
 }
 </style>

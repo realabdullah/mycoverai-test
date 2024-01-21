@@ -1,9 +1,14 @@
 :root {
-    --grey: #FAFBFF;
-    --deep-grey: #9197B3;
+    --grey: #DDE7F3;
     --black: #000000;
     --white: #FFFFFF;
-	--blue: #5932EA;
+	--blue: #1D4ED8;
+	--red: #e90f30;
+	--slate-one: #0f172a;
+	--slate-two: #1b2a4c;
+	--slate-three: #121F3D;
+	--slate-four: #1F3466;
+	--slate-five: #64748B;
 }
 
 * {
@@ -19,6 +24,6 @@ html {
 	body {
 		font-size: 1.6rem;
         font-family: "Open Sans", sans-serif;
-		background-color: var(--grey);
+		background-color: var(--slate-one);
 	}
 }
