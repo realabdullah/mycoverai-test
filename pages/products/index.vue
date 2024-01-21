@@ -4,8 +4,10 @@ definePageMeta({
     layout: "default",
 });
 
-const { categories, selectedCategories, selectedProduct, search, filteredProducts } = useProducts();
+const { categories, selectedCategories, selectedProduct, search, filteredProducts, getProducts, getCategories } = useProducts();
 
+await getProducts();
+await getCategories();
 </script>
 
 <template>
@@ -17,10 +19,10 @@ const { categories, selectedCategories, selectedProduct, search, filteredProduct
 
         <div class="products__container bg-white">
             <BaseTable v-if="filteredProducts && filteredProducts.length > 0" :header="['Name', 'Provider', 'Price', 'Category']" description="Products table">
-                <tr v-for="product in filteredProducts" :key="product.id" @click="selectedProduct = product">
+                <tr v-for="product in filteredProducts" :key="product.id" class="cursor-pointer" @click="selectedProduct = product">
                     <td>{{ product.name }}</td>
                     <td>{{ product.provider.company_name }}</td>
-                    <td>{{ product.price }}</td>
+                    <td>{{ formatAmount(product.price) }}</td>
                     <td>{{ product.productCategory.name }}</td>
                 </tr>
             </BaseTable>
@@ -28,7 +30,7 @@ const { categories, selectedCategories, selectedProduct, search, filteredProduct
         </div>
 
         <BaseModal v-if="selectedProduct" :title="selectedProduct.name" @close-modal="selectedProduct = null">
-            <span>{{ selectedProduct }}</span>
+            <ProductDetails :product="selectedProduct" />
         </BaseModal>
     </div>
 </template>
