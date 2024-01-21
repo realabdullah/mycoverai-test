@@ -10,6 +10,11 @@ interface ProductProvider {
     company_name: string;
 }
 
+interface FullBenefit {
+    name: string;
+    description: string;
+}
+
 interface Product {
     id: string;
     name: string;
@@ -29,7 +34,7 @@ interface Product {
     claimable: boolean;
     renewable: boolean;
     key_benefits: string;
-    full_benefits: string;
+    full_benefits: string | FullBenefit[];
     how_it_works: string;
     how_to_claim: string;
     created_at: string;

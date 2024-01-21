@@ -48,18 +48,27 @@ await getProduct();
             </div>
 
             <div class="product__page-content-details d-flex flex-column">
-                <BaseTabs v-model="currentTab" :tabs="['Benefits', 'How it works', 'How to claim']" />
+                <BaseTabs v-model="currentTab" :tabs="['Full benefits', 'Key benefits', 'How it works', 'How to claim']" />
                 <ClientOnly>
-                    <p v-show="currentTab === 'Benefits'" class="content weight-regular">
-                        <span v-if="product.full_benefits" v-html="product.full_benefits" />
+                    <p v-show="currentTab === 'Full benefits'" class="content weight-regular">
+                        <ul v-if="Array.isArray(product.full_benefits)">
+                            <li v-for="benefit in product.full_benefits" :key="benefit.name">
+                                {{ benefit.name }}: {{ benefit.description }}
+                            </li>
+                        </ul>
+                        <span v-else-if="product.full_benefits" v-html="product.full_benefits.replaceAll('color: rgb(0, 0, 0);', '')" />
+                        <span v-else>Data not available</span>
+                    </p>
+                    <p v-show="currentTab === 'Key benefits'" class="content weight-regular">
+                        <span v-if="product.how_it_works" v-html="product.key_benefits.replaceAll('color: rgb(0, 0, 0);', '')" />
                         <span v-else>Data not available</span>
                     </p>
                     <p v-show="currentTab === 'How it works'" class="content weight-regular">
-                        <span v-if="product.how_it_works" v-html="product.how_it_works" />
+                        <span v-if="product.how_it_works" v-html="product.how_it_works.replaceAll('color: rgb(0, 0, 0);', '')" />
                         <span v-else>Data not available</span>
                     </p>
                     <p v-show="currentTab === 'How to claim'" class="content weight-regular">
-                        <span v-if="product.how_to_claim" v-html="product.how_to_claim" />
+                        <span v-if="product.how_to_claim" v-html="product.how_to_claim.replaceAll('color: rgb(0, 0, 0);', '')" />
                         <span v-else>Data not available</span>
                     </p>
                 </ClientOnly>
