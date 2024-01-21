@@ -1,8 +1,9 @@
 :root {
-    --grey: #fafafa;
-    --deep-grey: #eaeaea;
+    --grey: #FAFBFF;
+    --deep-grey: #9197B3;
     --black: #000000;
     --white: #FFFFFF;
+	--blue: #5932EA;
 }
 
 * {
@@ -18,5 +19,6 @@ html {
 	body {
 		font-size: 1.6rem;
         font-family: "Open Sans", sans-serif;
+		background-color: var(--grey);
 	}
 }
