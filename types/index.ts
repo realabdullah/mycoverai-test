@@ -7,29 +7,31 @@ interface ProductCategory {
 
 interface ProductProvider {
     id: string;
-    first_name: string;
-    last_name: string;
-    email: string;
-    country: string;
     company_name: string;
-    business_email: string;
-    support_email: string;
-    active: string;
 }
 
 interface Product {
     id: string;
     name: string;
     description: string;
-    route_name: string;
     price: string;
+    meta: {
+        mca_price: {
+            monthly: string;
+            annually: string;
+            quarterly: string;
+            biannually: string;
+        };
+    };
     provider: ProductProvider;
     productCategory: ProductCategory;
     active: boolean;
-    is_live: boolean;
+    claimable: boolean;
+    renewable: boolean;
     key_benefits: string;
     full_benefits: string;
     how_it_works: string;
     how_to_claim: string;
     created_at: string;
+    updated_at: string;
 }

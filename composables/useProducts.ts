@@ -1,7 +1,11 @@
 export function useProducts() {
+    const nuxtApp = useNuxtApp();
+    const route = useRoute();
+
     const categories = ref<ProductCategory[]>([]);
     const products = ref<Product[]>([]);
-    const selectedProduct = ref();
+    const product = ref<Product>();
+    const selectedProduct = ref<Product | null>();
     const search = ref("");
     const selectedCategories = ref<string[]>([]);
 
@@ -16,12 +20,73 @@ export function useProducts() {
         else { return products.value; }
     });
 
+    async function getCategories() {
+        try {
+            const { data, error } = await useFetch("/api/products/categories", {
+                getCachedData(key) {
+                    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+                },
+            });
+            if (error.value || !data.value)
+                throw new Error("Error getting categories");
+
+            categories.value = data.value;
+        }
+        catch (error) {}
+    };
+
+    async function getProducts() {
+        try {
+            const { data, error } = await useFetch("/api/products", {
+                getCachedData(key) {
+                    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+                },
+            });
+            if (error.value || !data.value)
+                throw new Error("Error getting products");
+
+            products.value = data.value;
+        }
+        catch (error) {
+            throw createError({
+                statusCode: 404,
+                fatal: true,
+                message: "Error getting products",
+            });
+        }
+    };
+
+    async function getProduct() {
+        try {
+            const { data, error } = await useFetch(`/api/products/${route.params.id}`, {
+                getCachedData(key) {
+                    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+                },
+            });
+            if (error.value || !data.value)
+                throw new Error("Error getting the product");
+
+            product.value = data.value;
+        }
+        catch (error) {
+            throw createError({
+                statusCode: 404,
+                fatal: true,
+                message: "Error getting the product",
+            });
+        }
+    };
+
     return {
         categories,
         selectedCategories,
         selectedProduct,
         search,
+        product,
         products,
-        filteredProducts
+        filteredProducts,
+        getCategories,
+        getProducts,
+        getProduct,
     };
 }
