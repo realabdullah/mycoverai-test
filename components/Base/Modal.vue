@@ -10,7 +10,7 @@ defineEmits(["closeModal"]);
     <Transition name="fade" mode="out-in" appear>
         <div class="modal bg-white position-fixed z-9 overflow-auto">
             <div class="modal__header bg-white position-sticky d-flex items-center content-between">
-                <h3>{{ title }}</h3>
+                <h3 class="weight-medium">{{ title }}</h3>
                 <button class="close-modal bg-grey cursor-pointer" @click="$emit('closeModal')">
                     <IconLoader name="close" />
                 </button>
@@ -51,6 +51,10 @@ defineEmits(["closeModal"]);
         top: 0;
         padding: 1.5rem 0;
         margin-bottom: 2rem;
+
+        h3 {
+            @include font(2rem, 100%);
+        }
 
         .close-modal {
             width: 3rem;

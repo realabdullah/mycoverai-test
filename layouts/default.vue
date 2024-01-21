@@ -13,6 +13,7 @@ onUnmounted(() => window.removeEventListener("resize", () => deviceWidth.value =
 </script>
 
 <template>
+    <NuxtLoadingIndicator />
     <main class="d-flex items-start">
         <div v-show="!hideSidebar">
             <TheSidebar :navs="navs" @close-sidebar="hideSidebar = true" />

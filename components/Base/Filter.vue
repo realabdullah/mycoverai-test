@@ -38,7 +38,7 @@ function selectFilter(filter: string) {
 
             <Transition name="fade" mode="out-in" appear>
                 <div v-show="showFilters" class="filter__options d-flex flex-column items-start bg-white position-absolute z-3">
-                    <label v-for="filter in filters" :key="filter.id" :for="filter.name" class="d-flex items-center cursor-pointer">
+                    <label v-for="filter in filters" :key="filter.id" :for="filter.name" class="d-flex items-center cursor-pointer text-nowrap">
                         <input :id="filter.name" type="checkbox" :name="filter.name" :checked="selectedFilters.includes(filter.name)" @change="selectFilter(filter.name)">
                         {{ filter.name }}
                     </label>
@@ -68,7 +68,8 @@ function selectFilter(filter: string) {
         top: 5rem;
         left: 0;
         @include gap(2rem);
-        width: 15rem;
+        width: auto;
+        max-width: 30rem;
         box-shadow: #959da533 0px 8px 24px;
 
         label {

@@ -9,7 +9,12 @@ defineEmits(["openSidebar"]);
                 <IconLoader name="hamburger" />
             </button>
             <h3 class="header__title text-capitalize">
-                {{ $route.path.replace("/", "") }}
+                <NuxtLink v-if="$route.name === 'product'" to="/products">
+                    Back to products
+                </NuxtLink>
+                <template v-else>
+                    {{ $route.path.replace("/", "") }}
+                </template>
             </h3>
         </div>
 
