@@ -17,9 +17,13 @@ export function formatDate(value: string) {
 }
 
 export function formatAmount(value: string | number) {
+    if (!["string", "number"].includes(typeof value))
+        return "₦0";
+
     let amount = value.toString();
     if (amount.includes(","))
         amount = amount.replace(/,/g, "");
 
-    return `₦${Number(amount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    const formattedAmount = `₦${Number(amount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    return formattedAmount === "₦NaN" ? "₦0" : formattedAmount;
 }

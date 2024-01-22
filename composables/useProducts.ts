@@ -1,11 +1,13 @@
+import { computed, ref } from "vue";
+
 export function useProducts() {
     const nuxtApp = useNuxtApp();
     const route = useRoute();
 
     const categories = ref<ProductCategory[]>([]);
     const products = ref<Product[]>([]);
-    const product = ref<Product>();
-    const selectedProduct = ref<Product | null>();
+    const product = ref<Product | null>(null);
+    const selectedProduct = ref<Product | null>(null);
     const search = ref("");
     const selectedCategories = ref<string[]>([]);
 
