@@ -33,7 +33,7 @@ defineEmits<(event: "closeModal") => void>();
     border: 1.5px solid var(--grey);
     width: 75rem;
     max-width: 85vw;
-    max-height: 70vh;
+    max-height: 80vh;
     margin: 0 auto;
     top: 50%;
     left: 50%;

@@ -11,10 +11,13 @@ defineProps<{
         </p>
         <div class="product__details-meta">
             <p class="weight-medium d-flex items-center content-between">
+                Name: <span class="weight-regular">{{ product.name }}</span>
+            </p>
+            <p class="weight-medium d-flex items-center content-between">
                 Category: <span class="weight-regular">{{ product.productCategory.name }}</span>
             </p>
             <p class="weight-medium d-flex items-center content-between">
-                Active: <span class="weight-regular" :class="product.active ? 'active' : 'not-active'">{{ product.active ? "Active." : "Not active." }}</span>
+                Status: <span class="weight-regular" :class="product.active ? 'active' : 'not-active'">{{ product.active ? "Active." : "Not active." }}</span>
             </p>
             <p class="weight-medium d-flex items-center content-between">
                 Claimable: <span class="weight-regular">{{ product.claimable ? "Yes, Claimable." : "No, Not claimable." }}</span>

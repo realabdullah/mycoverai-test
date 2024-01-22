@@ -26,4 +26,12 @@ html {
         font-family: "Open Sans", sans-serif;
 		background-color: var(--slate-one);
 	}
+
+	ul, li {
+
+		// overriding text with dark color from the server
+		span {
+			color: var(--grey) !important;
+		}
+	}
 }

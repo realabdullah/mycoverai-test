@@ -17,7 +17,7 @@ const modelValue = defineModel<string>();
 
         <div class="position-relative w-100">
             <input
-                :id="id" v-model="modelValue" :type="type" :name="id" class="w-100 weight-regular bg-transparent col-grey"
+                :id="id" v-model="modelValue" :type="type" :name="id" class="w-100 weight-regular border-none bg-transparent col-grey"
                 :placeholder="placeholder"
             >
         </div>
@@ -32,13 +32,13 @@ label {
 	}
 
 	input {
-		border: 0.1rem solid var(--slate-five);
+		border-bottom: 0.1rem solid var(--slate-five);
 		padding: 1.2rem 1.5rem;
 		@include font(1.6rem, 100%);
         transition: border 0.3s ease-in;
 
 		&:focus {
-			border: 0.1rem solid var(--blue);
+			border-bottom: 0.1rem solid var(--blue);
             outline: none;
 		}
 	}

@@ -22,7 +22,7 @@ function selectFilter(filter: string) {
 
 <template>
     <div class="filter d-flex items-center">
-        <div v-if="selectedFilters && selectedFilters.length > 0" class="selected-filters">
+        <div v-if="selectedFilters && selectedFilters.length > 0" class="selected-filters d-flex items-center">
             <button v-for="selectedFilter in selectedFilters.slice(0, 3)" :key="selectedFilter" class="filter__selected bg-blue col-white d-flex items-center" @click="selectFilter(selectedFilter)">
                 {{ selectedFilter }} <IconLoader name="close" />
             </button>
@@ -53,6 +53,8 @@ function selectFilter(filter: string) {
     @include gap(1.5rem);
 
     .selected-filters {
+        @include gap(1rem);
+
         @include respond-to("small") {
             display: none;
         }

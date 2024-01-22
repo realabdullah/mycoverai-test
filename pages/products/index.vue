@@ -18,7 +18,7 @@ await getCategories();
         </div>
 
         <div class="products__container bg-white">
-            <BaseTable v-if="filteredProducts && filteredProducts.length > 0" :header="['Name', 'Provider', 'Price', 'Category', 'Active']" description="Products table">
+            <BaseTable v-if="filteredProducts && filteredProducts.length > 0" :header="['Name', 'Provider', 'Price', 'Category', 'Status']" description="Products table">
                 <tr v-for="product in filteredProducts" :key="product.id" class="cursor-pointer" @click="selectedProduct = product">
                     <td>{{ product.name }}</td>
                     <td>{{ product.provider.company_name }}</td>
